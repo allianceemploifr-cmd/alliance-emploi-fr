@@ -50,17 +50,10 @@ h1{font-size:23px;margin:5px 0 8px;font-weight:800}
   const isAndroid = /Android/i.test(ua);
   const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
-  button.addEventListener("click", function(e){
-    if (isAndroid) {
-      e.preventDefault();
-      const intentUrl = "intent://forms.gle/CMTPVJeh8ovZzRau5#Intent;scheme=https;package=com.android.chrome;end";
-      window.location.href = intentUrl;
-      setTimeout(function(){ window.location.href = formUrl; }, 1200);
-    } else if (isIOS) {
-      // iOS does not allow a normal web page to force Safari reliably.
-      // Keep the standard HTTPS link and show a clear fallback if TikTok blocks it.
-      setTimeout(function(){ hint.hidden = false; }, 1200);
-    } else {
+ button.addEventListener("click", function(e){
+  e.preventDefault();
+  window.location.href = formUrl;
+});
       // Desktop/other browsers: open the normal secure Google Forms URL.
       setTimeout(function(){ hint.hidden = false; }, 1200);
     }
